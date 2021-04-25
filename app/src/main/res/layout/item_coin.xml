@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.iebayirli.cryptomania.model.Coin" />
+
+        <variable
+            name="listener"
+            type="com.iebayirli.cryptomania.service.listeners.IItemSelectListener" />
+
+        <variable
+            name="favouriteSelectListener"
+            type="com.iebayirli.cryptomania.service.listeners.IFavouriteSelectListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="@{() -> listener.itemSelected(data)}"
+        app:contentPadding="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/coinsItemMainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".2" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivCoinImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guideline1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:setImage="@{data.image}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCoinName"
+                style="@style/TextAppearance.Cryptomania.Headline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@{data.name}"
+                app:layout_constraintBottom_toTopOf="@+id/tvCoinSymbol"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCoinSymbol"
+                style="@style/TextAppearance.Cryptomania.Headline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{data.symbol}"
+                app:layout_constraintBottom_toTopOf="@+id/tvCurrentPrice"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tvCoinName" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCurrentPrice"
+                style="@style/TextAppearance.Cryptomania.Headline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tvCoinSymbol"
+                tools:setTextCurrent="@{data.currentPrice.toString()}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvChangePercent"
+                style="@style/TextAppearance.Cryptomania.Headline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCurrentPrice"
+                app:layout_constraintStart_toEndOf="@+id/tvCurrentPrice"
+                app:layout_constraintTop_toTopOf="@+id/tvCurrentPrice"
+                tools:setTextChangePercent="@{data.changePercent}" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/tvFavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{(view) -> favouriteSelectListener.favouriteAdded(view,data)}"
+                android:src="@drawable/ic_favourite_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:setFavouriteCondition="@{data}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

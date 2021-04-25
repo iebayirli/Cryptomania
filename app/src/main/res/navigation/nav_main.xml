@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <action
+        android:id="@+id/action_goto_DetailFragment"
+        app:destination="@id/detailFragment" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.iebayirli.cryptomania.ui.home.HomeFragment"
+        android:label="All Coins" >
+        <action
+            android:id="@+id/action_homeFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.iebayirli.cryptomania.ui.favourites.FavouritesFragment"
+        android:label="Favourites" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.iebayirli.cryptomania.ui.detail.DetailFragment"
+        android:label="Detail" >
+        <argument
+            android:name="coin"
+            app:argType="com.iebayirli.cryptomania.model.Coin"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+</navigation>

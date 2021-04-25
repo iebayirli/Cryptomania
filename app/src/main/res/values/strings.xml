@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Cryptomania</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_txt_coins">All Coins</string>
+    <string name="menu_txt_favourites">Favourites</string>
+    <string name="txt_description">Description:</string>
+    <string name="txt_hashing">Hashing Algorithm:</string>
+
+    <string name="txt_monthly">Monthly price change</string>
+    <string name="txt_daily">Daily price change</string>
+
+</resources>
