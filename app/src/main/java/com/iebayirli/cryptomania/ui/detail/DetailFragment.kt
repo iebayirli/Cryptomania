@@ -17,6 +17,7 @@ import com.iebayirli.cryptomania.service.listeners.IFavouriteSelectListener
 import com.iebayirli.cryptomania.service.listeners.ITimeIntervalSelectListener
 import com.iebayirli.cryptomania.ui.main.MainViewModel
 import com.iebayirli.cryptomania.utils.ChartHelper
+import com.iebayirli.cryptomania.utils.DescDialog
 import com.iebayirli.cryptomania.utils.Utils
 import com.iebayirli.cryptomania.utils.observeNotNull
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +65,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(),
         viewModel.timeInterval.observeNotNull(this, {
             timeIntervalAdapter.updateData(it)
         })
+
+        binding.tvDesc.setOnClickListener {
+            val dialog = DescDialog(requireContext())
+            dialog.showProgress(binding.tvDesc.text.toString())
+        }
 
     }
 

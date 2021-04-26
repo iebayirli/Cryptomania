@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:onClick="@{() -> listener.itemSelected(data)}"
-        app:contentPadding="8dp">
+        android:layout_margin="8dp"
+        android:onClick="@{() -> listener.itemSelected(data)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/coinsItemMainLayout"
@@ -41,7 +41,7 @@
                 android:id="@+id/ivCoinImage"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_margin="4dp"
+                android:layout_margin="8dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/guideline1"
@@ -103,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_marginEnd="8dp"
                 android:onClick="@{(view) -> favouriteSelectListener.favouriteAdded(view,data)}"
                 android:src="@drawable/ic_favourite_border"
                 app:layout_constraintBottom_toBottomOf="parent"
