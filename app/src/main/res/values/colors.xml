@@ -12,4 +12,6 @@
     <color name="textColorDark">#707070</color>
     <color name="colorGreen">#00FF00</color>
     <color name="colorRed">#FF0000</color>
+    <color name="backgroundSelected">#82ADA9</color>
+    <color name="backgroundNormal">#B2DFDB</color>
 </resources>

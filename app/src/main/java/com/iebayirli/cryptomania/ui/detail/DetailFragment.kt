@@ -7,11 +7,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.iebayirli.cryptomania.R
+import com.iebayirli.cryptomania.adapter.CommonRecyclerViewAdapter
 import com.iebayirli.cryptomania.base.BaseFragment
 import com.iebayirli.cryptomania.databinding.FragmentDetailBinding
 import com.iebayirli.cryptomania.model.Coin
 import com.iebayirli.cryptomania.model.CoinDetail
+import com.iebayirli.cryptomania.model.TimeInterval
 import com.iebayirli.cryptomania.service.listeners.IFavouriteSelectListener
+import com.iebayirli.cryptomania.service.listeners.ITimeIntervalSelectListener
 import com.iebayirli.cryptomania.ui.main.MainViewModel
 import com.iebayirli.cryptomania.utils.ChartHelper
 import com.iebayirli.cryptomania.utils.Utils
@@ -24,7 +27,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(),
-    IFavouriteSelectListener {
+        IFavouriteSelectListener, ITimeIntervalSelectListener {
 
     override val layoutId: Int = R.layout.fragment_detail
 
@@ -35,6 +38,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(),
     private val favouritesList = mutableSetOf<String>()
 
     lateinit var coin: Coin
+
+    private val timeIntervalAdapter = CommonRecyclerViewAdapter<TimeInterval>(R.layout.item_time_interval, listOf(), this)
 
     override fun onReady(savedInstanceState: Bundle?) {
         coin = arguments?.getSerializable("coin") as Coin
@@ -54,12 +59,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(),
             favouritesList.addAll(it)
         })
 
-        binding.switchDailyToMonthly.setOnCheckedChangeListener { btn, isCheck ->
-            if (isCheck)
-                setUIForMonthly()
-            else
-                setUIForDaily()
-        }
+        binding.rvTimeInterval.adapter = timeIntervalAdapter
+
+        viewModel.timeInterval.observeNotNull(this, {
+            timeIntervalAdapter.updateData(it)
+        })
+
     }
 
     private fun setCoinDetailUI(coinDetail: CoinDetail) {
@@ -71,18 +76,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(),
         }
     }
 
-    private fun setUIForDaily() {
-        viewModel.getCoinHistory(coin.id!!)
-        binding.tvChartTitle.text = resources.getString(R.string.txt_daily)
-    }
-
-    private fun setUIForMonthly() {
-        viewModel.getCoinHistory(coin.id!!, "30")
-        binding.tvChartTitle.text = resources.getString(R.string.txt_monthly)
-    }
-
     override fun favouriteAdded(view: View, coin: Coin) {
         mainViewModel.updateFavouriteList(Utils.setFavoriteClickedUI(favouritesList, view, coin))
+    }
+
+    override fun timeIntervalChanged(timeInterval: TimeInterval) {
+        viewModel.updateTimeInterval(timeInterval)
+        viewModel.getCoinHistory(coin.id!!, timeInterval.timeZone)
+        binding.tvChartTitle.text = timeInterval.title
     }
 
     private companion object {

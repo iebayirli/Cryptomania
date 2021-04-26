@@ -21,10 +21,9 @@ data class ChartData(val xAxisValues: List<String>, val entries: List<Entry>)
 object ChartHelper {
 
     fun displayHistoricalLineChart(
-        view: View,
-        symbol: String,
-        historyList: List<DoubleArray>,
-        isMonthly: Boolean = false
+            view: View,
+            symbol: String,
+            historyList: List<DoubleArray>
     ) {
         (view as? LineChart)?.let { lineChart ->
             // Chart properties
@@ -39,15 +38,15 @@ object ChartHelper {
             lineDataSet.setDrawCircles(false)
             lineDataSet.color = ContextCompat.getColor(lineChart.context, R.color.textColorDark)
             lineDataSet.valueTextColor =
-                ContextCompat.getColor(lineChart.context, R.color.textColorDark)
+                    ContextCompat.getColor(lineChart.context, R.color.textColorDark)
 
 
             //x-axis properties
             val xAxis = lineChart.xAxis
-            xAxis.isEnabled = isMonthly
+            xAxis.isEnabled = false
             xAxis.granularity = 1f
             xAxis.textColor =
-                ContextCompat.getColor(lineChart.context, R.color.textColorDark)
+                    ContextCompat.getColor(lineChart.context, R.color.textColorDark)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             val formatter = object : ValueFormatter() {
                 override fun getAxisLabel(value: Float, axis: AxisBase?): String {
@@ -64,7 +63,7 @@ object ChartHelper {
             val yAxisLeft = lineChart.axisLeft
             yAxisLeft.granularity = 1f
             yAxisLeft.textColor =
-                ContextCompat.getColor(lineChart.context, R.color.textColorDark)
+                    ContextCompat.getColor(lineChart.context, R.color.textColorDark)
 
             //Set the data for the line chart
             val data = LineData(lineDataSet)
@@ -74,7 +73,7 @@ object ChartHelper {
             //Update the legend for the chart
             val legend = lineChart.legend
             legend.textColor =
-                ContextCompat.getColor(lineChart.context, R.color.textColorDark)
+                    ContextCompat.getColor(lineChart.context, R.color.textColorDark)
             legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
 
             //Draw the chart

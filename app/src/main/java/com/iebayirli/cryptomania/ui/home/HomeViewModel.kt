@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val coinRepository: CoinRepository
+        private val coinRepository: CoinRepository
 ) : BaseViewModel(), IQueryTextChangedListener {
 
     private val _coinList: MutableLiveData<List<Coin>> = MutableLiveData()
@@ -28,26 +28,25 @@ class HomeViewModel @Inject constructor(
 
     private var tempQueryList: List<Coin> = listOf()
 
-
     val queryEvent: LiveEvent<Boolean> = LiveEvent()
 
     fun getCoins(favouritesList: Set<String>) {
         viewModelScope.launch {
             apiCall(coinRepository.getAllCoins(),
-                { list ->
-                    list.forEach {
-                        if (!favouritesList.isNullOrEmpty() && favouritesList.contains(
-                                it.id
-                            )
-                        ) {
-                            it.isFavourite = true
+                    { list ->
+                        list.forEach {
+                            if (!favouritesList.isNullOrEmpty() && favouritesList.contains(
+                                            it.id
+                                    )
+                            ) {
+                                it.isFavourite = true
+                            }
                         }
-                    }
-                    _coinList.value = list
-                    tempQueryList = _coinList.value!!
-                }, {
-                    Log.e(TAG, "getCoinsError: $it")
-                })
+                        _coinList.value = list
+                        tempQueryList = _coinList.value!!
+                    }, {
+                Log.e(TAG, "getCoinsError: $it")
+            })
         }
     }
 
@@ -55,17 +54,17 @@ class HomeViewModel @Inject constructor(
     override fun queryTextChanged(query: StateFlow<String>) {
         viewModelScope.launch {
             query.debounce(300)
-                .filter { query ->
-                    if (query.isEmpty()) {
-                        queryEvent.value = true
-                        return@filter false
-                    } else {
-                        return@filter true
+                    .filter { query ->
+                        if (query.isEmpty()) {
+                            queryEvent.value = true
+                            return@filter false
+                        } else {
+                            return@filter true
+                        }
+                    }.distinctUntilChanged()
+                    .collect { query ->
+                        updateList(tempQueryList.filter { it.id!!.compare(query) })
                     }
-                }.distinctUntilChanged()
-                .collect { query ->
-                    updateList(tempQueryList.filter { it.id!!.compare(query) })
-                }
         }
     }
 

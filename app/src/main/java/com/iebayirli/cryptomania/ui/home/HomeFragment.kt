@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), IItemSelectListener,
-    IFavouriteSelectListener {
+        IFavouriteSelectListener {
 
     override val layoutId: Int = R.layout.fragment_home
 
@@ -26,10 +26,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), IItemSe
     private val mainViewModel: MainViewModel by viewModels()
 
     private val rvAdapter = CommonRecyclerViewAdapter<Coin>(
-        R.layout.item_coin,
-        listOf(),
-        this,
-        this
+            R.layout.item_coin,
+            listOf(),
+            this,
+            this
     )
 
     override fun onReady(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), IItemSe
 
     override fun itemSelected(coin: Coin) {
         navController.navigate(
-            HomeFragmentDirections.actionGotoDetailFragment(coin)
+                HomeFragmentDirections.actionGotoDetailFragment(coin)
         )
     }
 

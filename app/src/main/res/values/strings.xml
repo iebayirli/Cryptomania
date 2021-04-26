@@ -6,8 +6,11 @@
     <string name="menu_txt_favourites">Favourites</string>
     <string name="txt_description">Description:</string>
     <string name="txt_hashing">Hashing Algorithm:</string>
+    <string name="txt_time_interval">Time interval:</string>
 
     <string name="txt_monthly">Monthly price change</string>
     <string name="txt_daily">Daily price change</string>
+    <string name="txt_fourteen_day">14-Day price change</string>
+    <string name="txt_max">Max price change</string>
 
 </resources>

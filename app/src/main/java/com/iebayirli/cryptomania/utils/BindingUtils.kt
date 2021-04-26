@@ -6,11 +6,13 @@ import android.text.TextWatcher
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.iebayirli.cryptomania.R
 import com.iebayirli.cryptomania.model.Coin
+import com.iebayirli.cryptomania.model.TimeInterval
 import com.iebayirli.cryptomania.service.listeners.IQueryTextChangedListener
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.math.floor
@@ -44,7 +46,7 @@ fun setTextForChangePercent(textView: MaterialTextView, price: Double?) {
 
 @BindingAdapter(value = ["tools:setFavouriteCondition"])
 fun setFavouriteCondition(imageView: ShapeableImageView, coin: Coin?) {
-    if(coin != null){
+    if (coin != null) {
         if (coin.isFavourite) {
             imageView.setImageResource(R.drawable.ic_favourite)
         } else {
@@ -54,7 +56,7 @@ fun setFavouriteCondition(imageView: ShapeableImageView, coin: Coin?) {
 }
 
 @BindingAdapter(value = ["tools:queryTextChanged"])
-fun setQueryTextChangeFlow(textInputEditText: TextInputEditText, queryTextChangeListener: IQueryTextChangedListener){
+fun setQueryTextChangeFlow(textInputEditText: TextInputEditText, queryTextChangeListener: IQueryTextChangedListener) {
     val query = MutableStateFlow("")
 
     textInputEditText.addTextChangedListener(object : TextWatcher {
@@ -71,4 +73,13 @@ fun setQueryTextChangeFlow(textInputEditText: TextInputEditText, queryTextChange
             // afterTextChanged
         }
     })
+}
+
+@BindingAdapter(value = ["tools:setButtonBackground"])
+fun setBackgroundForSelection(cardView: MaterialCardView, timeInterval: TimeInterval) {
+    if (timeInterval.isSelected) {
+        cardView.setBackgroundColor(ContextCompat.getColor(cardView.context, R.color.backgroundSelected))
+    }else{
+        cardView.setBackgroundColor(ContextCompat.getColor(cardView.context, R.color.backgroundNormal))
+    }
 }
