@@ -15,19 +15,19 @@ Features;
 
 ## Libraries
 
-- Architecture;
--- [Data Binding](https://developer.android.com/topic/libraries/data-binding/)
--- [Live Data](https://developer.android.com/topic/libraries/architecture/livedata)
--- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
--- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) 
--- [Navigation](https://developer.android.com/guide/navigation)
--- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
+* Architecture;
+    * [Data Binding](https://developer.android.com/topic/libraries/data-binding/)
+    * [Live Data](https://developer.android.com/topic/libraries/architecture/livedata)
+    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+    * [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) 
+    * [Navigation](https://developer.android.com/guide/navigation)
+    * [DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
 
-- Third parties;
--- [Kotlin Coroutines (Kotlin flows)](https://developer.android.com/kotlin/flow)
--- [Moshi](https://github.com/square/moshi)
--- [Retrofit](https://github.com/square/retrofit)
--- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
--- [Glide](https://bumptech.github.io/glide/)
+* Third parties;
+    * [Kotlin Coroutines (Kotlin flows)](https://developer.android.com/kotlin/flow)
+    * [Moshi](https://github.com/square/moshi)
+    * [Retrofit](https://github.com/square/retrofit)
+    * [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+    * [Glide](https://bumptech.github.io/glide/)
 
 Thank you.
