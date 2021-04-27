@@ -4,6 +4,14 @@ Cryptomania is a cryptocurrency tracking application that uses the latest techno
 
 ## Screenshots
 
+<p align="middle">
+  <img width="250" src="https://raw.githubusercontent.com/iebayirli/Cryptomania/master/screenshots/ss1.jpg">
+  <img width="250" src="https://raw.githubusercontent.com/iebayirli/Cryptomania/master/screenshots/ss2.jpg">
+  <img width="250" src="https://raw.githubusercontent.com/iebayirli/Cryptomania/master/screenshots/ss3.jpg">
+  <img width="250" src="https://raw.githubusercontent.com/iebayirli/Cryptomania/master/screenshots/ss4.jpg">
+  <img width="250" src="https://raw.githubusercontent.com/iebayirli/Cryptomania/master/screenshots/ss5.jpg">
+</p>
+
 ## Architecture and features
 MVVM (Model-View-ViewModel) architecture pattern and data binding is used in the development of this application. The development language of the application is Kotlin. 
 
