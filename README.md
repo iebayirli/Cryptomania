@@ -1,6 +1,6 @@
 # Cryptomania
 
-Cryptomania is a cryptocurrency tracking application that uses the latest technologies on Android. [The CoinGecko crypto API](https://www.coingecko.com/en/api) has been used to get the latest prices and histories for coins.
+Cryptomania is a cryptocurrency tracking application. [The CoinGecko crypto API](https://www.coingecko.com/en/api) has been used to get the latest prices and histories for coins.
 
 ## Screenshots
 
@@ -13,7 +13,7 @@ Cryptomania is a cryptocurrency tracking application that uses the latest techno
 </p>
 
 ## Architecture and features
-MVVM (Model-View-ViewModel) architecture pattern and data binding is used in the development of this application. The development language of the application is Kotlin. 
+MVVM (Model-View-ViewModel) architecture pattern and data binding is used in the development of this application. The development language of the application is Kotlin. The latest technologies have been tried to be used in the development of this application.
 
 Features;
 - The user can view all coins information; such as name, symbol, current price, price change percentage etc.
