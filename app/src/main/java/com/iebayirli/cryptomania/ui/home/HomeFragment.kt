@@ -25,19 +25,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), IItemSe
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    private val rvAdapter = CommonRecyclerViewAdapter<Coin>(
-            R.layout.item_coin,
-            listOf(),
-            this,
-            this
-    )
+
+    private val listAdapter by lazy {
+        CoinListAdapter(
+                this,
+                this
+        )
+    }
 
     override fun onReady(savedInstanceState: Bundle?) {
-        binding.rvCoinList.adapter = rvAdapter
 
-        viewModel.coinList.observeNotNull(this, {
-            rvAdapter.updateData(it)
-        })
+        binding.rvCoinList.adapter = listAdapter
 
         viewModel.queryEvent.observeNotNull(this, {
             viewModel.getCoins(mainViewModel.favouritesList.value!!)
@@ -46,6 +44,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), IItemSe
         mainViewModel.favouritesList.observeNotNull(this, {
             viewModel.getCoins(it)
         })
+
+        viewModel.coinList.observeNotNull(this) {
+            listAdapter.submitList(it)
+        }
 
     }
 

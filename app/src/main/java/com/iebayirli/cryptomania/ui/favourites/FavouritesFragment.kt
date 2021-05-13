@@ -10,6 +10,7 @@ import com.iebayirli.cryptomania.databinding.FragmentFavouritesBinding
 import com.iebayirli.cryptomania.model.Coin
 import com.iebayirli.cryptomania.service.listeners.IFavouriteSelectListener
 import com.iebayirli.cryptomania.service.listeners.IItemSelectListener
+import com.iebayirli.cryptomania.ui.home.CoinListAdapter
 import com.iebayirli.cryptomania.ui.home.HomeFragmentDirections
 import com.iebayirli.cryptomania.ui.main.MainViewModel
 import com.iebayirli.cryptomania.utils.Utils
@@ -26,18 +27,18 @@ class FavouritesFragment : BaseFragment<FragmentFavouritesBinding, FavouritesVie
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    private val rvAdapter = CommonRecyclerViewAdapter<Coin>(
-        R.layout.item_coin,
-        listOf(),
-        this,
-        this
-    )
+    private val rvAdapter by lazy {
+        CoinListAdapter(
+                this,
+                this
+        )
+    }
 
     override fun onReady(savedInstanceState: Bundle?) {
         binding.rvCoinList.adapter = rvAdapter
 
         viewModel.coinList.observeNotNull(this, {
-            rvAdapter.updateData(it)
+            rvAdapter.submitList(it)
         })
 
         mainViewModel.favouritesList.observeNotNull(this, {

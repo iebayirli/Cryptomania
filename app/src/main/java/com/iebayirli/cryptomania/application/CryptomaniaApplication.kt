@@ -1,4 +1,4 @@
-package com.iebayirli.cryptomania
+package com.iebayirli.cryptomania.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

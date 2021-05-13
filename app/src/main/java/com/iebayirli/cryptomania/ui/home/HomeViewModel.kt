@@ -22,9 +22,8 @@ class HomeViewModel @Inject constructor(
         private val coinRepository: CoinRepository
 ) : BaseViewModel(), IQueryTextChangedListener {
 
-    private val _coinList: MutableLiveData<List<Coin>> = MutableLiveData()
-    val coinList: LiveData<List<Coin>>
-        get() = _coinList
+    private val _coinList = MutableLiveData<List<Coin>>()
+    val coinList: LiveData<List<Coin>> = _coinList
 
     private var tempQueryList: List<Coin> = listOf()
 
